@@ -1,8 +1,15 @@
 // this makes my app as a unique variable in our application
-let myApp = angular.module('myApp', []);
+let artistControllers = angular.module('artistControllers', []);
 
-myApp.controller('MyController', ['$scope','$http',function MyController($scope, $http) {
+artistControllers.controller('ListController', ['$scope','$http',function MyController($scope, $http) {
   $http.get('./js/data.json').success(function (data) {
     $scope.artists =  data
+    $scope.artistOrder =  'name'
+  })
+}])
+artistControllers.controller('DetailController', ['$scope','$http','$routeParams',function MyController($scope, $http, $routeParams) {
+  $http.get('./js/data.json').success(function (data) {
+    $scope.artists =  data
+    $scope.whichItem =  $routeParams.itemId
   })
 }])
