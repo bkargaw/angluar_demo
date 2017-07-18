@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='myToDoApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo App</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js'>
+    </script>
+    <script src='./js/app.js'></script>
+  </head>
+  <body>
+    <h1>Todo App</h1>
+    <div ng-controller='ToDoCntr as c'>
+      <input type="text" ng-model='c.toBeAdded'>
+      <button ng-click='c.add()'> add</button>
+      <div>
+        Your Todos:
+        <button ng-hide="c.edit" ng-click='c.toggelEdit()'>Edit</button>
+        <button ng-show="c.edit" ng-click='c.toggelEdit()'>Update</button>
+        <ol>
+          <li ng-repeat="item in c.list track by $index">
+            <span  ng-hide='c.edit' ng-bind='item'>{{item}}
+            </span>
+            <button ng-hide='c.edit' ng-click="c.delete($index)">delete</button>
+            <input ng-show='c.edit' type="text"  ng-model='item'>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </body>
+</html>
