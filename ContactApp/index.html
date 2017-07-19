@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app='ContactApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>Contact App</title>
+    <link rel="shortcut icon" href="http://res.cloudinary.com/dwuzkffrk/image/upload/v1492299495/favicon_nvbfj5.ico"/>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js'>
+    </script>
+    <script src='js/app.js'></script>
+    <script src='js/appConfig.service.js'></script>
+    <script src='js/appname.service.js'></script>
+    <script src='js/contact.controller.js'></script>
+    <script src='js/contactData.service.js'></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <header ng-controller='headerCnt as head'>
+      <h1>{{head.appTitle}}</h1>
+    </header>
+    <div class='container' ng-controller ='ContactCnt as ctrl'>
+      <div class="row">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat='contact in ctrl.contacts'
+           ng-click='ctrl.selectContact($index)'>
+            <span>{{contact.name.first + ' ' + contact.name.last}}</span>
+          </li>
+        <ul>
+      </div>
+
+      <div class="row">
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img ng-src="{{ctrl.selectedContact.picture.medium}}" alt="">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{ctrl.selectedContact.name.first + ' ' + ctrl.selectedContact.name.last }}</h4>
+            <div>
+              <p>
+                <h6>Location</h6>
+              </p>
+              {{ctrl.selectedContact.location.street + ', ' + ctrl.selectedContact.location.city + ', ' + ctrl.selectedContact.location.state}}
+              <p>
+              </p>
+            </div>
+            <div>
+              <p>
+                <h6>Phone</h6>
+              </p>
+              {{ctrl.selectedContact.cell}}
+              <p>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer ng-controller='footerCnt as foot'>
+      <h1>{{foot.appTitle}}</h1>
+    </footer>
+  </body>
+</html>
